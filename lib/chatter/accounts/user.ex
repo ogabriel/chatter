@@ -18,5 +18,6 @@ defmodule Chatter.Accounts.User do
     |> unique_constraint(:email)
     |> validate_format(:email, ~r/@/)
     |> validate_confirmation(:encrypted_password)
+    |> update_change(:encrypted_password, &Bcrypt.hash_pwd_salt/1)
   end
 end
