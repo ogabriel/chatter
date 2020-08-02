@@ -17,6 +17,9 @@ defmodule ChatterWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+
+    resources "/sign_up", UserController, only: [:new, :create]
+    resources "/user", UserController, only: [:edit, :update, :delete]
   end
 
   # Other scopes may use custom stacks.
