@@ -16,5 +16,7 @@ defmodule Chatter.Accounts.User do
     |> cast(attrs, [:email, :username, :encrypted_password])
     |> validate_required([:email, :username, :encrypted_password])
     |> unique_constraint(:email)
+    |> validate_format(:email, ~r/@/)
+    |> validate_confirmation(:encrypted_password)
   end
 end
