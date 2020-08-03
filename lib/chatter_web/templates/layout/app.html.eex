@@ -27,6 +27,14 @@
     <main role="main" class="container">
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
       <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+
+      <%= if signed_in?(@conn) do %>
+        <%= link "Sign out", to: Routes.session_path(@conn, :delete), method: :delete %>
+      <% else %>
+        <%= link "Sign in", to: Routes.session_path(@conn, :new) %> |
+        <%= link "Sign up", to: Routes.user_path(@conn, :new) %>
+      <% end %>
+
       <%= @inner_content %>
     </main>
   </body>
