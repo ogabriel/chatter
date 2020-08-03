@@ -52,6 +52,7 @@ defmodule ChatterWeb.UserController do
     {:ok, _user} = Accounts.delete_user(user)
 
     conn
+    |> delete_session(:current_user_id)
     |> put_flash(:info, "User deleted successfully.")
     |> redirect(to: Routes.page_path(conn, :index))
   end
