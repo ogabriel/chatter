@@ -18,7 +18,8 @@ defmodule ChatterWeb.Router do
 
     get "/", PageController, :index
 
-    resources "/user", UserController, except: [:index]
+    resources "/sign_up", UserController, only: [:new, :create]
+    resources "/user", UserController, except: [:index, :new, :create]
   end
 
   # Other scopes may use custom stacks.
