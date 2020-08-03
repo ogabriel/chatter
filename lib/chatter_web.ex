@@ -68,6 +68,7 @@ defmodule ChatterWeb do
 
       import ChatterWeb.ErrorHelpers
       import ChatterWeb.Gettext
+      import ChatterWeb.AuthHelpers
       alias ChatterWeb.Router.Helpers, as: Routes
     end
   end
