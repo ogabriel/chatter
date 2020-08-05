@@ -20,8 +20,11 @@ defmodule ChatterWeb.Router do
 
     resources "/user", UserController, except: [:index, :new, :create]
     resources "/sign_up", UserController, only: [:new, :create]
+
     resources "/sign_in", SessionController, only: [:new, :create]
     delete "/sign_out", SessionController, :delete
+
+    resources "/password_reset", PasswordResetController, only: [:new, :create]
   end
 
   # Other scopes may use custom stacks.
