@@ -29,6 +29,7 @@
       <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
 
       <%= if signed_in?(@conn) do %>
+        <h3>Hello <%= username(@conn) %>!</h3>
         <%= link "Sign out", to: Routes.session_path(@conn, :delete), method: :delete %>
       <% else %>
         <%= link "Sign in", to: Routes.session_path(@conn, :new) %> |

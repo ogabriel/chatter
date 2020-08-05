@@ -14,6 +14,7 @@ defmodule ChatterWeb.UserController do
       {:ok, user} ->
         conn
         |> put_session(:current_user_id, user.id)
+        |> put_session(:current_username, user.username)
         |> put_flash(:info, "User created successfully.")
         |> redirect(to: Routes.user_path(conn, :show, user))
 
@@ -53,6 +54,7 @@ defmodule ChatterWeb.UserController do
 
     conn
     |> delete_session(:current_user_id)
+    |> delete_session(:current_username)
     |> put_flash(:info, "User deleted successfully.")
     |> redirect(to: Routes.page_path(conn, :index))
   end

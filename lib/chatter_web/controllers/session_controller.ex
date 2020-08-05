@@ -14,6 +14,7 @@ defmodule ChatterWeb.SessionController do
       {:ok, user} ->
         conn
         |> put_session(:current_user_id, user.id)
+        |> put_session(:current_username, user.username)
         |> put_flash(:info, "Signed in successfully.")
         |> redirect(to: Routes.user_path(conn, :show, user))
 
@@ -27,6 +28,7 @@ defmodule ChatterWeb.SessionController do
   def delete(conn, _) do
     conn
     |> delete_session(:current_user_id)
+    |> delete_session(:current_username)
     |> put_flash(:info, "Signed out successfully.")
     |> redirect(to: Routes.page_path(conn, :index))
   end
