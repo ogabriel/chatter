@@ -1,0 +1,10 @@
+<h1>Forgot password</h1>
+
+<%= form_for @conn, Routes.password_reset_path(@conn, :create), [as: :password_reset], fn f -> %>
+  <%= label f, :email %>
+  <%= text_input f, :email %>
+
+  <div>
+    <%= submit "Send confirmation e-mail" %>
+  </div>
+<% end %>
