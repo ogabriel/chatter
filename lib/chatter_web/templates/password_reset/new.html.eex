@@ -4,7 +4,6 @@
   <%= label f, :email %>
   <%= text_input f, :email %>
 
-  <div>
-    <%= submit "Send confirmation e-mail" %>
-  </div>
+  <%= submit "Send confirmation e-mail" %> |
+  <%= link "Back", to: Routes.session_path(@conn, :new) %>
 <% end %>
