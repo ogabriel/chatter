@@ -20,3 +20,6 @@ config :chatter, ChatterWeb.Endpoint,
 
 # Print only warnings and errors during test
 config :logger, level: :warn
+
+# Configuration to send emails on test
+config :my_app, Chatter.Mailer, adapter: Bamboo.TestAdapter
