@@ -47,7 +47,8 @@ defmodule Chatter.MixProject do
       {:plug_cowboy, "~> 2.0"},
       {:comeonin, "~> 5.3"},
       {:bcrypt_elixir, "~> 2.0"},
-      {:bamboo, "~> 1.5"}
+      {:bamboo, "~> 1.5"},
+      {:secure_random, "~> 0.5"}
     ]
   end
 
