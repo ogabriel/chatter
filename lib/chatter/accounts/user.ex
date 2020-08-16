@@ -4,8 +4,11 @@ defmodule Chatter.Accounts.User do
 
   schema "users" do
     field :email, :string
-    field :encrypted_password, :string
     field :username, :string
+    field :encrypted_password, :string
+
+    field :password_reset_token, :string
+    field :password_reset_sent_at, :string
 
     timestamps()
   end
