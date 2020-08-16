@@ -24,7 +24,7 @@ defmodule ChatterWeb.Router do
     resources "/sign_in", SessionController, only: [:new, :create]
     delete "/sign_out", SessionController, :delete
 
-    resources "/password_reset", PasswordResetController, only: [:new, :create]
+    resources "/password_reset", PasswordResetController, only: [:new, :create, :edit, :update]
   end
 
   # Other scopes may use custom stacks.
