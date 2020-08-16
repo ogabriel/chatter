@@ -83,7 +83,7 @@ defmodule Chatter.Accounts do
 
   @doc false
   def set_token_on_user(user) do
-    attra = %{
+    attrs = %{
       "password_reset_token" => SecureRandom.urlsafe_base64(),
       "password_reset_sent_at" => NaiveDateTime.utc_now()
     }
