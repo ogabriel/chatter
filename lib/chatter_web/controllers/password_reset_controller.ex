@@ -25,4 +25,36 @@ defmodule ChatterWeb.PasswordResetController do
         |> redirect(to: Routes.session_path(conn, :new))
     end
   end
+
+  def edit(conn, %{"id" => token}) do
+    if user = Accounts.get_user_by_token(token) do
+      changeset = Accounts.change_user(user)
+      render(conn, "edit.html", user: user, changeset: changeset)
+    else
+      render(conn, "invalid_token.html")
+    end
+  end
+
+  def update(conn, %{"id" => token, "user" => params}) do
+    user = Accounts.get_user_by_token(token)
+
+    with true <- Accounts.valid_token?(user),
+         params <-
+           Map.merge(params, %{"password_reset_token" => nil, "password_reset_sent_at" => nil}),
+         {:ok, _user} <- Accounts.update_user(user, params) do
+      conn
+      |> put_flash(:info, "Password reseted")
+      |> redirect(to: Routes.session_path(conn, :new))
+    else
+      {:error, changeset} ->
+        conn
+        |> put_flash(:error, "Invalid password")
+        |> render("edit.html", user: user, changeset: changeset)
+
+      false ->
+        conn
+        |> put_flash(:error, "Invalid token")
+        |> redirect(to: Routes.password_reset_path(conn, :new))
+    end
+  end
 end
