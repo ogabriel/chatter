@@ -8,7 +8,7 @@ defmodule Chatter.Accounts.User do
     field :encrypted_password, :string
 
     field :password_reset_token, :string
-    field :password_reset_sent_at, :string
+    field :password_reset_sent_at, :naive_datetime
 
     timestamps()
   end
