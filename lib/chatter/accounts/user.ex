@@ -13,10 +13,18 @@ defmodule Chatter.Accounts.User do
     timestamps()
   end
 
+  @allowed_attrs [
+    :email,
+    :username,
+    :encrypted_password,
+    :password_reset_token,
+    :password_reset_sent_at
+  ]
+
   @doc false
   def changeset(user, attrs) do
     user
-    |> cast(attrs, [:email, :username, :encrypted_password])
+    |> cast(attrs, @allowed_attrs)
     |> validate_required([:email, :username, :encrypted_password])
     |> unique_constraint(:email)
     |> validate_format(:email, ~r/@/)
