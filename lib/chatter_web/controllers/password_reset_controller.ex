@@ -1,7 +1,7 @@
 defmodule ChatterWeb.PasswordResetController do
   use ChatterWeb, :controller
 
-  alias Chatter.Accounts
+  alias Chatter.{Accounts, Email, Mailer}
 
   def new(conn, _params) do
     render(conn, "new.html")
