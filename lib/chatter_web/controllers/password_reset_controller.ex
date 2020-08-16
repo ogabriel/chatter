@@ -15,6 +15,11 @@ defmodule ChatterWeb.PasswordResetController do
         |> redirect(to: Routes.password_reset_path(conn, :new))
 
       user ->
+        user
+        |> Accounts.set_token_on_user()
+        |> Email.password_reset()
+        |> Mailer.deliver_later()
+
         conn
         |> put_flash(:info, "Password reset e-mail was sent")
         |> redirect(to: Routes.session_path(conn, :new))
