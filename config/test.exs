@@ -22,4 +22,4 @@ config :chatter, ChatterWeb.Endpoint,
 config :logger, level: :warn
 
 # Configuration to send emails on test
-config :my_app, Chatter.Mailer, adapter: Bamboo.TestAdapter
+config :chatter, Chatter.Mailer, adapter: Bamboo.TestAdapter
