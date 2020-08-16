@@ -93,6 +93,10 @@ defmodule Chatter.Accounts do
     |> Repo.update!()
   end
 
+  def valid_token?(user) do
+    Time.diff(NaiveDateTime.utc_now(), user.password_reset_sent_at) < 7200
+  end
+
   @doc """
   Deletes a user.
 
