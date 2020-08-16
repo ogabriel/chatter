@@ -4,7 +4,7 @@ defmodule Chatter.Email do
   def base_email do
     new_email
     |> from("email@chatter.com")
-    |> put_html_layout({TeacherWeb.LayoutView, "email.html"})
+    |> put_html_layout({ChatterWeb.LayoutView, "email.html"})
   end
 
   def password_reset(user) do
