@@ -41,6 +41,10 @@ defmodule Chatter.Accounts do
   def get_user_by_email(nil), do: nil
   def get_user_by_email(email), do: Repo.get_by(User, email: email)
 
+  @doc false
+  def get_user_by_token(nil), do: nil
+  def get_user_by_token(token), do: Repo.get_by(User, password_reset_token: token)
+
   @doc """
   Creates a user.
 
@@ -75,6 +79,18 @@ defmodule Chatter.Accounts do
     user
     |> User.changeset(attrs)
     |> Repo.update()
+  end
+
+  @doc false
+  def set_token_on_user(user) do
+    attra = %{
+      "password_reset_token" => SecureRandom.urlsafe_base64(),
+      "password_reset_sent_at" => NaiveDateTime.utc_now()
+    }
+
+    user
+    |> User.changeset(attrs)
+    |> Repo.update!()
   end
 
   @doc """
